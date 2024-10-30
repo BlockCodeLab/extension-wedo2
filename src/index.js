@@ -8,7 +8,7 @@ export default {
   collaborator: 'LEGO',
   image: featureImage,
   icon: iconImage,
-  tags: ['blocks', 'arcade', 'controller'],
+  tags: ['blocks', 'communication', 'kit'],
   bluetoothRequired: true,
 
   // l10n
