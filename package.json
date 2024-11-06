@@ -21,6 +21,7 @@
     "bun-loader-yaml": "github:kankungyip/bun-loader-yaml"
   },
   "dependencies": {
+    "@blockcode/core": "workspace:*",
     "@blockcode/ui": "workspace:*"
   }
 }
