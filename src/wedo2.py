@@ -230,11 +230,9 @@ class Wedo2:
 
     async def connect(self, device):
         await self.ble.connect(device)
+        await self.ble.notified(DEVICE_SERVICE, ATTACHED_IO, self._notified_handle)
         await self.set_led_mode()
         await self.set_led(0, 0, 255)
-        asyncio.create_task(
-            self.ble.notified_task(DEVICE_SERVICE, ATTACHED_IO, self._notified_handle)
-        )
         await self._heartbeat()
 
     def disconnect(self):
@@ -303,9 +301,7 @@ class Wedo2:
             cmd = generate_input_command(connect_id, type, mode, 1, unit, True)
 
             await self.send(INPUT_COMMAND, cmd)
-            await self.ble.notified_task(
-                IO_SERVICE, INPUT_VALUES, self._notified_handle
-            )
+            await self.ble.notified(IO_SERVICE, INPUT_VALUES, self._notified_handle)
 
     def _clear_port(self, connect_id):
         type = self._ports[connect_id - 1]
